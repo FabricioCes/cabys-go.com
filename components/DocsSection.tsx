@@ -17,7 +17,7 @@ export default function DocsSection() {
       method: "GET",
       path: "/api/cabys",
       description: "Search CABYS codes by query parameter",
-      params: "?q=search_term",
+      params: "?query={search_term}",
     },
     {
       method: "GET",
@@ -26,6 +26,13 @@ export default function DocsSection() {
       params: "",
     }
   ]
+
+  const response = {
+    id: "0161001010000",
+    description: "Café cereza, orgánico",
+    tax_percent: 0.01,
+  };
+
 
   return (
     <div className="space-y-8">
@@ -87,7 +94,7 @@ export default function DocsSection() {
           <div className="space-y-3">
             <h4 className="font-semibold">Search for coffee-related products:</h4>
             <div className="bg-muted p-4 rounded-md font-mono text-sm overflow-x-auto">
-              curl -X GET &quot;{baseUrl}/api/cabys?q=coffee&quot;
+              curl -X GET &quot;{baseUrl}/api/cabys?query=café&quot;
             </div>
           </div>
 
@@ -104,18 +111,8 @@ export default function DocsSection() {
 
           <div className="space-y-3">
             <h4 className="font-semibold">Example Response:</h4>
-            <div className="bg-muted p-4 rounded-md font-mono text-sm overflow-x-auto">
-              {`{
-              "results": [
-                {
-                  "id": "1010101000",
-                  "description": "Coffee beans, not roasted",
-                  "tax_percent": 13,
-                  "category": "Agricultural products"
-                }
-              ],
-              "total": 1
-            }`}
+            <div className="bg-muted p-4 rounded-md font-mono text-sm overflow-x-auto whitespace-pre-wrap">
+              {JSON.stringify(response, null, 2)}
             </div>
           </div>
         </CardContent>
